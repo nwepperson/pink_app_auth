@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'rails_12factor', group: :production
 gem 'bootstrap-generators', '~> 3.3.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

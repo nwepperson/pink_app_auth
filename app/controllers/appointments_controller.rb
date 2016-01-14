@@ -1,6 +1,8 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
+  before_action :set_todo, only: [:toggle_completed, :show, :edit, :update, :destroy]
+  before_action :verify_correct_user, only: [:show, :edit, :update, :destroy]
   # GET /appointments
   # GET /appointments.json
   def index
@@ -71,5 +73,10 @@ class AppointmentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
       params.require(:appointment).permit(:date, :time, :comment)
+    end
+
+    def verify_correct_user
+       @todo = current_user.todos.find_by(id: params[:id])
+       redirect_to root_url, notice: 'Access Denied!' if @todo.nil?
     end
 end
