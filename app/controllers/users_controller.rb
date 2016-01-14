@@ -81,5 +81,5 @@ class UsersController < ApplicationController
     def verify_correct_user
        user = User.find_by(id: params[:id])
        redirect_to root_url, notice: 'Access Denied!' unless current_user?(user)
-     end
+    end
 end

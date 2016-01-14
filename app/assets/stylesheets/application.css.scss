@@ -5,6 +5,10 @@
 @import "bootstrap-sprockets.scss";
 @import "bootstrap.scss";
 @import "superhero.scss";
+html {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   padding-top: $navbar-height + 10px;
@@ -35,4 +39,26 @@ main {
   th, td {
     text-align:center
   }
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #000000;
+  border-color: #ff0099;
+  border-radius: 14px;
+}
+/* line 11, /Users/epperson/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass/bootstrap/mixins/_buttons.scss */
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #333333;
+  border-color: #ffffff;
+}
+/* line 21, /Users/epperson/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass/bootstrap/mixins/_buttons.scss */
+.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  background-image: none;
+}
+/* line 29, /Users/epperson/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass/bootstrap/mixins/_buttons.scss */
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
+  background-color: #666666;
+  border-color: rgba(255, 255, 255, 0);
 }

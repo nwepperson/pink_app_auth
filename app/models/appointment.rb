@@ -8,7 +8,7 @@ class Appointment < ActiveRecord::Base
   private
 
   def default_values
-    self.completed ||= false
+    #self.completed ||= false
     nil                           # required so that TX will not rollback!!!
   end
 end

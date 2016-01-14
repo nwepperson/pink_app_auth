@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
-  before_action :set_todo, only: [:toggle_completed, :show, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :verify_correct_user, only: [:show, :edit, :update, :destroy]
   # GET /appointments
   # GET /appointments.json
@@ -31,7 +31,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to appointment_path, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_path, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,7 +76,7 @@ class AppointmentsController < ApplicationController
     end
 
     def verify_correct_user
-       @todo = current_user.todos.find_by(id: params[:id])
-       redirect_to root_url, notice: 'Access Denied!' if @todo.nil?
+       @appointment = current_user.appointments.find_by(id: params[:id])
+       redirect_to root_url, notice: 'Access Denied!' if @appointment.nil?
     end
 end
