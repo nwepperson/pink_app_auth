@@ -6,7 +6,11 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = current_user.appointments.order(created_at: :desc)
+    if current_user.admin?
+      @appointments = Appointment.all
+    else
+      @appointments = current_user.appointments.order(created_at: :desc)
+    end
   end
 
   # GET /appointments/1
@@ -76,7 +80,11 @@ class AppointmentsController < ApplicationController
     end
 
     def verify_correct_user
-       @appointment = current_user.appointments.find_by(id: params[:id])
-       redirect_to root_url, notice: 'Access Denied!' if @appointment.nil?
+      if current_user.admin?
+        @appointment = Appointment.find(params[:id])
+      else
+        @appointment = current_user.appointments.find_by(id: params[:id])
+        redirect_to root_url, notice: 'Access Denied!' if @appointment.nil?
+      end
     end
 end

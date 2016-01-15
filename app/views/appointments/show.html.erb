@@ -15,12 +15,13 @@
   <dd><%= @appointment.date %></dd>
 
   <dt>Time:</dt>
-  <dd><%= @appointment.time %></dd>
+  <dd><%= @appointment.time.strftime("%I:%M %p") %></dd>
 
   <dt>Comment:</dt>
   <dd><%= @appointment.comment %></dd>
 
   <dt>Created:</dt>
-  <dd><%= @appointment.created_at %></dd>
+  <dd><%= @appointment.created_at.strftime("%F") %></dd>
+  <dd><%= @appointment.created_at.strftime("%I:%M %p") %></dd>
 
 </dl>

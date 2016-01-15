@@ -1,4 +1,7 @@
 <% if signed_in? %>
+  <% if @current_user.admin? %>
+    <li><%= link_to 'Users', '/users' %></li>
+  <% end %>
   <li><%= link_to 'Appointments', appointments_path %></li>
   <li><%= link_to @current_user, user_path(@current_user) %></li>
   <li><%= link_to 'Sign out', signout_path, method: 'delete' %></li>

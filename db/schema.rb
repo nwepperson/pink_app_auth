@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114190432) do
+ActiveRecord::Schema.define(version: 20160115145745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.date     "date", null: false
-    t.time     "time", null: false
+    t.date     "date",       null: false
+    t.time     "time",       null: false
     t.string   "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id", null: false;
+    t.integer  "user_id"
   end
 
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160114190432) do
     t.string   "remember_token"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
