@@ -251,7 +251,7 @@ $table-bg:                      hsla(0, 100%, 100%, 0) !default;
 //** Background color used for `.table-striped`.
 $table-bg-accent:               $well-bg !default;
 //** Background color used for `.table-hover`.
-$table-bg-hover:                darken($well-bg, 3%) !default;
+$table-bg-hover:                darken($well-bg, 25%) !default;
 $table-bg-active:               $table-bg-hover !default;
 
 //== Type

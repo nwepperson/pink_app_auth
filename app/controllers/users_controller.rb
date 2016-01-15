@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if current_user.admin?
-      @users = User.all
+      @users = User.all.order(id: :asc)
     else
       redirect_to root_url, notice: 'Access Denied!'
     end
