@@ -34,13 +34,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        sign_in @user
-        if @user.admin?
+        if current_user.admin?
         format.html { redirect_to '/users', notice: 'Welcome Admin!' }
         format.json { render :show, status: :created, location: @user }
         else
         format.html { redirect_to root_path, notice: 'Welcome!' }
         format.json { render :show, status: :created, location: @user }
+        sign_in @user
       end
       else
         format.html { render :new }
@@ -80,10 +80,10 @@ class UsersController < ApplicationController
     end
 
     def set_admin user
-      if user[:email] != "nepperson25@gmail.com"
-        user[:admin] = false
-      else
+      if user[:email] == "nepperson25@gmail.com" || user[:email] == "leighepperson@yahoo.com"
         user[:admin] = true
+      else
+        user[:admin] = false
       end
     end
 

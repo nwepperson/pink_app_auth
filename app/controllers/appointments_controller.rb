@@ -7,7 +7,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   def index
     if current_user.admin?
-      @appointments = Appointment.all
+      @appointments = Appointment.all.order(date: :desc)
+      @appointments = Appointment.all.order(time: :desc)
     else
       @appointments = current_user.appointments.order(created_at: :desc)
     end

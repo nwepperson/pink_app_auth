@@ -11,6 +11,10 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt>Created by:</dt>
+  <% @user = User.find(@appointment.user_id) %>
+  <dd><%= @user.first_name %> <%= @user.last_name %></dd>
+
   <dt>Date:</dt>
   <dd><%= @appointment.date %></dd>
 

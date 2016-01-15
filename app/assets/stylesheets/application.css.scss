@@ -32,7 +32,7 @@ input[type="radio"], input[type="checkbox"] {
 
 main {
   margin: 2% auto;
-  width: 90%;
+  width: 98%;
 }
 
 .appointments {
@@ -67,8 +67,8 @@ main {
 
 .jumbotron {
   background-color: #333333;
-  border-color: #E60079;
-  border-radius: 14px;
+  // background: image-url('fitback.jpg');
+  // background-size: cover;
 }
 
 .navbar {
@@ -87,4 +87,13 @@ select:hover{
 input:hover{
   background-color: #E60079;
   color: #FFF;
+}
+
+.fitlogo {
+  height: 5%;
+  width: 5%;
+  float: left;
+  margin-left: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
 }
