@@ -33,6 +33,9 @@ input[type="radio"], input[type="checkbox"] {
 main {
   margin: 2% auto;
   width: 98%;
+  background-color: rgba(255, 255, 255, 0.25);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .appointments {
@@ -66,9 +69,10 @@ main {
 }
 
 .jumbotron {
+  color: #fff;
   background-color: #333333;
-  // background: image-url('fitback.jpg');
-  // background-size: cover;
+  text-shadow: 1px 1px #000;
+  margin-top: 10%;
 }
 
 .navbar {
