@@ -4,7 +4,8 @@
     New Appointment
   <% end %>
   <% if @current_user.admin? %>
-    <h1><%= @appointments.count %> Appointments</h1>
+    <h1><%= @appointments.count %> Appointments</h1><br>
+    <%= render 'filter' %>
   <% else %>
     <h1>My Appointments</h1>
   <% end %>
@@ -15,11 +16,11 @@
     <thead>
       <tr>
             <% if @current_user.admin? %>
-              <th>Name<br><%= select(:user, :last_name, User.uniq.order(last_name: :asc).pluck(:last_name)) %></th>
-              <th>Email<br><%= select(:user, :email, User.uniq.pluck(:email)) %></th>
-              <th>Date<br><%= select(:appointment, :date, Appointment.uniq.order(date: :asc).pluck(:date)) %></th>
-              <th>Time<br><%= select(:appointment, :time, Appointment.uniq.order(time: :asc).pluck(:time)) %></th>
-              <th>Comment<br><%= select(:appointment, :comment, Appointment.uniq.pluck(:comment)) %></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Comment</th>
             <% else %>
               <th>Date</th>
               <th>Time</th>
