@@ -14,4 +14,11 @@ class UserNotifier < ApplicationMailer
     mail( :to => @user.email,
     :subject => 'Thanks for scheduling a training session!' )
   end
+
+  def send_admin_email(user)
+    @user = user
+    @appointment = Appointment.find_by(user_id: @user.id)
+    mail( :to => 'nepperson25@gmail.com',
+    :subject => 'Thanks for scheduling a training session!' )
+  end
 end
