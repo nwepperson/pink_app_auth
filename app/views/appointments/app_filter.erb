@@ -3,16 +3,13 @@
     <span class="glyphicon glyphicon-plus"></span>
     New Appointment
   <% end %>
-  <% if @current_user.admin? %>
-    <h1><%= @appointments.count %> Appointments</h1><br>
-  <% else %>
-    <h1>My Appointments</h1>
+  <%= link_to appointments_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
   <% end %>
+    <h1>Filtered Appointments</h1>
 </div>
-  <%= form_tag 'app_filter', :method => :get do %>
-    <%= select(:appointment, :date, Appointment.uniq.order(date: :asc).pluck(:date)) %>
-    <%= submit_tag 'Filter', class: "btn btn-primary" %>
-  <% end %>
+
 <div class="table-responsive appointments">
   <table class="table table-hover">
     <thead>

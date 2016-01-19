@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :appointments
   root to: 'static_pages#home'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/user_filter', to: 'users#filter', via: 'get'
+  match '/app_filter', to: 'appointments#app_filter', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
