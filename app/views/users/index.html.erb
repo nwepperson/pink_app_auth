@@ -5,7 +5,7 @@
   <% end %>
   <h1><%= @users.count %> Users</h1>
   <%= form_tag 'user_filter', :method => :get do %>
-    <%= select(:user, :email, User.uniq.order(email: :asc).pluck(:email)) %>
+    <%= select(:user, :last_name, User.uniq.order(last_name: :asc).pluck(:last_name)) %>
     <% if User.count > 0 %>
       <%= submit_tag 'Filter', class: "btn btn-primary" %>
     <% end %>

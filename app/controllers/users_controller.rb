@@ -76,7 +76,7 @@ class UsersController < ApplicationController
 
   def filter
     if current_user.admin?
-      @users = User.find_by(params[:user])
+      @users = User.where(users: params[:user]).order(last_name: :asc)
     else
       redirect_to root_url, notice: 'Access Denied!'
     end
