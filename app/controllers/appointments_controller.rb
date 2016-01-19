@@ -36,6 +36,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
+        UserNotifier.send_appointment_email(current_user).deliver_now
         format.html { redirect_to root_url, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
