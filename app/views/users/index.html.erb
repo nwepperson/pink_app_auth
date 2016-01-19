@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-plus"></span>
     New User
   <% end %>
-  <h1><%= User.count %> Users</h1>
+  <h1><%= @users.count %> Users</h1>
   <%= form_tag 'user_filter', :method => :get do %>
     <%= select(:user, :email, User.uniq.order(email: :asc).pluck(:email)) %>
     <%= submit_tag 'Filter', class: "btn btn-primary" %>
