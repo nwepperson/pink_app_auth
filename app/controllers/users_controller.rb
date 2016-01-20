@@ -6,11 +6,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if signed_in?
     if current_user.admin?
       @users = User.all.order(id: :asc)
     else
       redirect_to root_url, notice: 'Access Denied!'
     end
+  else
+    redirect_to signin_url, notice: "Please sign in."
+  end
   end
 
   # GET /users/1
@@ -37,13 +41,17 @@ class UsersController < ApplicationController
       if @user.save
         UserNotifier.send_signup_email(@user).deliver_now
         if @user.admin?
-        format.html { redirect_to '/users', notice: 'Welcome Admin!' }
-        format.json { render :show, status: :created, location: @user }
+          format.html { redirect_to '/users', notice: 'Welcome Admin!' }
+          format.json { render :show, status: :created, location: @user }
         else
-        format.html { redirect_to root_path, notice: 'Welcome!' }
-        format.json { render :show, status: :created, location: @user }
-        sign_in @user
-      end
+          format.html { redirect_to root_path, notice: 'Welcome!' }
+          format.json { render :show, status: :created, location: @user }
+          if current_user.admin?
+            format.html { redirect_to '/users' }
+          else
+            sign_in @user
+          end
+        end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
