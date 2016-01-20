@@ -74,7 +74,11 @@ class AppointmentsController < ApplicationController
   end
 
   def app_filter
+    if current_user.admin?
       @appointments = Appointment.where(appointments: params[:appointment]).order(time: :asc)
+    else
+      @appointments = current_user.appointments.where(appointments: params[:appointment]).order(time: :asc)
+    end
   end
 
   private

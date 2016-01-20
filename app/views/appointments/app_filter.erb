@@ -37,6 +37,8 @@
               <% @user = User.find(appointment.user_id) %>
               <th><%= @user.first_name %> <%= @user.last_name %></th>
               <th><%= User.find(appointment.user_id) %></th>
+            <% else %>
+              <% @user = @current_user %>
             <% end %>
             <td><%= appointment.date %></td>
             <td><%= appointment.time.strftime("%I:%M %p") %></td>
