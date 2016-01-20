@@ -9,13 +9,29 @@
     <h1>My Appointments</h1>
   <% end %>
 </div>
+<%= @userapp %>
+  <%= 'Date' %>
   <%= form_tag 'app_filter', :method => :get do %>
     <%= select(:appointment, :date, @appointments.order(date: :asc).pluck(:date)) %>
     <% if @appointments.count > 0 %>
       <%= submit_tag 'Filter', class: "btn btn-primary" %>
     <% end %>
-  <% end %><br>
-<div class="table-responsive appointments">
+  <% end %>
+<!--   <%= 'Time' %>
+  <%= form_tag 'app_filter', :method => :get do %>
+    <%= select(:appointment, :time, @appointments.order(time: :asc).pluck(:time)) %>
+    <% if @appointments.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %> -->
+  <%= 'Comment' %>
+  <%= form_tag 'app_filter', :method => :get do %>
+    <%= select(:appointment, :comment, @appointments.order(comment: :asc).pluck(:comment)) %>
+    <% if @appointments.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<br><div class="table-responsive appointments">
   <table class="table table-hover">
     <thead>
       <tr>

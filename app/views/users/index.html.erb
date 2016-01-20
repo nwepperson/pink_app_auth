@@ -4,8 +4,23 @@
     New User
   <% end %>
   <h1><%= @users.count %> Users</h1>
+  <%= 'First Name' %>
+  <%= form_tag 'user_filter', :method => :get do %>
+    <%= select(:user, :first_name, User.uniq.order(first_name: :asc).pluck(:first_name)) %>
+    <% if User.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+  <%= 'Last Name' %>
   <%= form_tag 'user_filter', :method => :get do %>
     <%= select(:user, :last_name, User.uniq.order(last_name: :asc).pluck(:last_name)) %>
+    <% if User.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+  <%= 'Email' %>
+  <%= form_tag 'user_filter', :method => :get do %>
+    <%= select(:user, :email, User.uniq.order(email: :asc).pluck(:email)) %>
     <% if User.count > 0 %>
       <%= submit_tag 'Filter', class: "btn btn-primary" %>
     <% end %>
