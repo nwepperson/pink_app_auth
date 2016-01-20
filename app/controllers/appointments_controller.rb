@@ -52,6 +52,8 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
+        UserNotifier.send_appointment_email(current_user).deliver_now
+        UserNotifier.send_admin_email(current_user).deliver_now
         format.html { redirect_to appointment_path, notice: 'Appointment was successfully updated.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
@@ -72,11 +74,7 @@ class AppointmentsController < ApplicationController
   end
 
   def app_filter
-    if current_user.admin?
       @appointments = Appointment.where(appointments: params[:appointment]).order(time: :asc)
-    else
-      redirect_to root_url, notice: 'Access Denied!'
-    end
   end
 
   private

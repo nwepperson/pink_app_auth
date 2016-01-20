@@ -35,7 +35,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        if current_user.admin?
+        UserNotifier.send_signup_email(@user).deliver_now
+        if @user.admin?
         format.html { redirect_to '/users', notice: 'Welcome Admin!' }
         format.json { render :show, status: :created, location: @user }
         else
