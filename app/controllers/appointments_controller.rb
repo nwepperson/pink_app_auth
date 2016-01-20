@@ -54,6 +54,10 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    @appointments = current_user.appointments
+    if @appointments.exists?(time: @appointment.time, date: @appointment.date)
+      redirect_to root_url, notice: 'Appointment already exists!'
+    else
     respond_to do |format|
       if @appointment.update(appointment_params)
         UserNotifier.send_appointment_email(current_user).deliver_now
@@ -65,6 +69,7 @@ class AppointmentsController < ApplicationController
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
+  end
   end
 
   # DELETE /appointments/1
