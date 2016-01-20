@@ -10,8 +10,8 @@
   <% end %>
 </div>
   <%= form_tag 'app_filter', :method => :get do %>
-    <%= select(:appointment, :date, Appointment.uniq.order(date: :asc).pluck(:date)) %>
-    <% if Appointment.count > 0 %>
+    <%= select(:appointment, :date, @appointments.order(date: :asc).pluck(:date)) %>
+    <% if @appointments.count > 0 %>
       <%= submit_tag 'Filter', class: "btn btn-primary" %>
     <% end %>
   <% end %><br>

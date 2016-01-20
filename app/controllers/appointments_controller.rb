@@ -33,16 +33,20 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     @appointment.user = current_user
-
-    respond_to do |format|
-      if @appointment.save
-        UserNotifier.send_appointment_email(current_user).deliver_now
-        UserNotifier.send_admin_email(current_user).deliver_now
-        format.html { redirect_to root_url, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+    @appointments = current_user.appointments
+    if @appointments.exists?(time: @appointment.time, date: @appointment.date)
+      redirect_to root_url, notice: 'Appointment already exists!'
+    else
+      respond_to do |format|
+        if @appointment.save
+          UserNotifier.send_appointment_email(current_user).deliver_now
+          UserNotifier.send_admin_email(current_user).deliver_now
+          format.html { redirect_to root_url, notice: 'Appointment was successfully created.' }
+          format.json { render :show, status: :created, location: @appointment }
+        else
+          format.html { render :new }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
