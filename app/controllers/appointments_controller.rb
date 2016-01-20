@@ -39,8 +39,8 @@ class AppointmentsController < ApplicationController
     else
       respond_to do |format|
         if @appointment.save
-          UserNotifier.send_appointment_email(current_user).deliver_now
-          UserNotifier.send_admin_email(current_user).deliver_now
+          UserNotifier.send_appointment_email(current_user, @appointment).deliver_now
+          UserNotifier.send_admin_email(current_user, @appointment).deliver_now
           format.html { redirect_to root_url, notice: 'Appointment was successfully created.' }
           format.json { render :show, status: :created, location: @appointment }
         else
@@ -55,13 +55,13 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     @appointments = current_user.appointments
-    if @appointments.exists?(time: @appointment.time, date: @appointment.date)
+    if @appointments.exists?(time: appointment_params[:time], date: appointment_params[:date])
       redirect_to root_url, notice: 'Appointment already exists!'
     else
     respond_to do |format|
       if @appointment.update(appointment_params)
-        UserNotifier.send_appointment_email(current_user).deliver_now
-        UserNotifier.send_admin_email(current_user).deliver_now
+        UserNotifier.send_update_email(current_user, @appointment).deliver_now
+        UserNotifier.send_adm_update_email(current_user, @appointment).deliver_now
         format.html { redirect_to appointment_path, notice: 'Appointment was successfully updated.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
@@ -75,6 +75,8 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy
+    UserNotifier.send_delete_email(current_user, @appointment).deliver_now
+    UserNotifier.send_adm_delete_email(current_user, @appointment).deliver_now
     @appointment.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Appointment was successfully deleted.' }
