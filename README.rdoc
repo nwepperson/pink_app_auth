@@ -5,7 +5,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: Ruby 2.2.4
 
 * System dependencies
 
@@ -27,9 +27,14 @@ Things you may want to cover:
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
+Create Appointments class
+  date: type: date [ cannot be null ]
+  time: type: time [ cannot be null ]
+  comment: type: string [ no restrictions ]
 
-appointment
-* date:date
-* time:time
-* comment/goals:string
-
+Create Users class
+  first name: type: string [ cannot be null ]
+  last name: type: string [ cannot be null ]
+  email: type: string [ cannot be null ]
+  password digest: type: string [ cannot be null ]
+  remember token: type: string
