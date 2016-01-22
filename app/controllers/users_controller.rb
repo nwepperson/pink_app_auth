@@ -93,7 +93,7 @@ class UsersController < ApplicationController
     end
 
     def set_admin user
-      if user[:email] == "nepperson25@gmail.com" || user[:email] == "leighepperson@yahoo.com"
+      if user[:email] == "leighpinkfit@gmail.com" || user[:email] == "leighepperson@yahoo.com"
         user[:admin] = true
       else
         user[:admin] = false
