@@ -35,11 +35,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    set_admin(@user)
     respond_to do |format|
+      set_admin(@user)
       if @user.save
         UserNotifier.send_signup_email(@user).deliver_now
         if @user.admin?
+          sign_in @user
           format.html { redirect_to '/users', notice: 'Welcome Admin!' }
           format.json { render :show, status: :created, location: @user }
         else
