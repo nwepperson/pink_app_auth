@@ -34,7 +34,7 @@ main {
   margin: 2% auto;
   margin-top: 3%;
   width: 98%;
-  background-color: rgba(150, 150, 150, 0.25);
+  background-opacity: 0;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -52,7 +52,7 @@ th, td {
 .btn-primary {
   color: #fff;
   background-color: #000000;
-  border-color: #E60079;
+  border-color: #ff3399;
   border-radius: 14px;
   margin-left: 10px;
   margin-right: 10px;
@@ -60,7 +60,7 @@ th, td {
 /* line 11, /Users/epperson/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass/bootstrap/mixins/_buttons.scss */
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #E60079;
+  background-color: #ff3399;
   border-color: #000000;
 }
 /* line 21, /Users/epperson/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass/bootstrap/mixins/_buttons.scss */
@@ -75,13 +75,22 @@ th, td {
 
 .jumbotron {
   color: #fff;
-  background-color: #333333;
-  text-shadow: 1px 1px #000;
-  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #000;
+  font-family: 'Calligraffitti', cursive;
+
+  h1 {
+  animation:blur 5s ease-in-out infinite alternate;
+  text-shadow:0px 0px 5px #E60079,
+      0px 0px 7px #E60079;
+  font-family: 'Josefin Slab', serif;
+  }
 }
 
 select, input{
-  background-color: #E60079;
+  background-color: #ff3399;
   font-weight: bold;
 }
 
@@ -90,7 +99,7 @@ select:hover{
 }
 
 input:hover{
-  background-color: #E60079;
+  background-color: #ff3399;
   color: #FFF;
 }
 
@@ -105,4 +114,26 @@ input:hover{
   max-width: 50px;
   min-height: 40px;
   min-width: 40px;
+}
+
+@keyframes blur{
+  from{
+      text-shadow:0px 0px 10px #fff,
+      0px 0px 10px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #E60079,
+      0px 0px 150px #E60079,
+      0px 10px 100px #E60079,
+      0px 10px 100px #E60079,
+      0px 10px 100px #E60079,
+      0px 10px 100px #E60079,
+      0px -10px 100px #E60079,
+      0px -10px 100px #E60079;}
 }
