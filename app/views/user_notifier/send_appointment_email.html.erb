@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for scheduling an appointment, <%= @user.first_name %>!</h1>
+    <h3>Date:</h3><p><%= @appointment.date %></p>
+    <h3>Time:</h3><p><%= @appointment.time.strftime("%I:%M %p") %></p>
+    <h3>Comment:</h3><p><%= @appointment.comment %></p>
+    <h3>Created:</h3><p><%= @appointment.created_at.strftime("%F") %></p><p><%= @appointment.created_at.strftime("%I:%M %p") %></p>
+    <ul>
+      <li><a href="http://pinkfit.github.io">Pink Fit Github</a></li>
+      <li><a href="https://serene-chamber-3290.herokuapp.com/">Training Session Portal</a></li>
+    </ul>
+  </body>
+</html>

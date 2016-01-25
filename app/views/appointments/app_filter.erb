@@ -1,0 +1,52 @@
+<div class="page-header">
+  <%= link_to new_appointment_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Appointment
+  <% end %>
+  <%= link_to appointments_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+    <h1>Filtered Appointments</h1>
+</div>
+
+<div class="table-responsive appointments">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+            <% if @current_user.admin? %>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Comment</th>
+            <% else %>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Comment</th>
+            <% end %>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @appointments) do |appointment| %>
+            <% if @current_user.admin? %>
+              <% @user = User.find(appointment.user_id) %>
+              <th><%= @user.first_name %> <%= @user.last_name %></th>
+              <th><%= User.find(appointment.user_id) %></th>
+            <% else %>
+              <% @user = @current_user %>
+            <% end %>
+            <td><%= appointment.date %></td>
+            <td><%= appointment.time.strftime("%I:%M %p") %></td>
+            <td><%= appointment.comment %></td>
+            <td><%= link_to 'Show', appointment %></td>
+        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to appointments_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_appointment_path(@appointment), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show appointment</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Created by:</dt>
+  <% @user = User.find(@appointment.user_id) %>
+  <dd><%= @user.first_name %> <%= @user.last_name %></dd>
+
+  <dt>Date:</dt>
+  <dd><%= @appointment.date %></dd>
+
+  <dt>Time:</dt>
+  <dd><%= @appointment.time.strftime("%I:%M %p") %></dd>
+
+  <dt>Comment:</dt>
+  <dd><%= @appointment.comment %></dd>
+
+  <dt>Created:</dt>
+  <dd><%= @appointment.created_at.strftime("%F") %></dd>
+  <dd><%= @appointment.created_at.strftime("%I:%M %p") %></dd>
+
+</dl>

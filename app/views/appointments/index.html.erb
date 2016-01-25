@@ -1,0 +1,80 @@
+<div class="page-header">
+  <%= link_to new_appointment_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Appointment
+  <% end %>
+  <% if @current_user.admin? %>
+    <% if @appointments.count > 0 %>
+      <h1><%= @appointments.count %> Appointments</h1><br>
+    <% else %>
+      <h1>No Appointments</h1><br>
+    <% end %>
+  <% else %>
+    <% if @appointments.count > 0 %>
+      <h1><%= @appointments.count %> Appointments</h1><br>
+    <% else %>
+      <h1>No appointments scheduled.</h1><br>
+    <% end %>
+  <% end %>
+</div>
+<% if @appointments.count > 0 %>
+  <%= 'Date' %>
+  <%= form_tag 'app_filter', :method => :get do %>
+    <%= select(:appointment, :date, @appointments.order(date: :asc).pluck(:date)) %>
+    <% if @appointments.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<!--   <%= 'Time' %>
+  <%= form_tag 'app_filter', :method => :get do %>
+    <%= select(:appointment, :time, @appointments.order(time: :asc).pluck(:time)) %>
+    <% if @appointments.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %> -->
+  <%= 'Comment' %>
+  <%= form_tag 'app_filter', :method => :get do %>
+    <%= select(:appointment, :comment, @appointments.order(comment: :asc).pluck(:comment)) %>
+    <% if @appointments.count > 0 %>
+      <%= submit_tag 'Filter', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>
+<br><div class="table-responsive appointments">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+            <% if @current_user.admin? %>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Comment</th>
+            <% else %>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Comment</th>
+            <% end %>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @appointments) do |appointment| %>
+            <% if @current_user.admin? %>
+              <% @user = User.find(appointment.user_id) %>
+              <th><%= @user.first_name %> <%= @user.last_name %></th>
+              <th><%= User.find(appointment.user_id) %></th>
+            <% end %>
+            <td><%= appointment.date %></td>
+            <td><%= appointment.time.strftime("%I:%M %p") %></td>
+            <td><%= appointment.comment %></td>
+            <td><%= link_to 'Show', appointment %></td>
+        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
