@@ -46,11 +46,12 @@ class UsersController < ApplicationController
         else
           format.html { redirect_to root_path, notice: 'Welcome!' }
           format.json { render :show, status: :created, location: @user }
-          if current_user.admin?
-            format.html { redirect_to '/users' }
-          else
-            sign_in @user
-          end
+          sign_in @user
+          # if current_user.admin? || @user.admin?
+          #   format.html { redirect_to '/users' }
+          # else
+          #   sign_in @user
+          # end
         end
       else
         format.html { render :new }

@@ -18,21 +18,21 @@ class UserNotifier < ApplicationMailer
   def send_admin_email(user, appointment)
     @user = user
     @appointment = appointment
-    mail( :to => 'leighpinkfit@gmail.com',
+    mail( :to => '7703565322@mms.att.net',
     :subject => 'Pink Fit Session App' )
   end
 
   def send_adm_update_email(user, appointment)
     @user = user
     @appointment = appointment
-    mail( :to => 'leighpinkfit@gmail.com',
+    mail( :to => '7703565322@mms.att.net',
     :subject => 'Pink Fit Session App' )
   end
 
   def send_adm_delete_email(user, appointment)
     @user = user
     @appointment = appointment
-    mail( :to => 'leighpinkfit@gmail.com',
+    mail( :to => '7703565322@mms.att.net',
     :subject => 'Pink Fit Session App' )
   end
 
